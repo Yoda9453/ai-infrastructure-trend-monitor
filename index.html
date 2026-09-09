@@ -8,24 +8,25 @@
 :root{
   --bg:#f5f7fa; --card:#ffffff; --ink:#18212f; --muted:#667085;
   --line:#e6e9ef; --accent:#163a5f; --green:#16794a; --amber:#a15c00;
-  --red:#b42318; --softgreen:#ecf8f2; --softblue:#eef5fb; --softamber:#fff7e8;
+  --softblue:#eef5fb; --softamber:#fff7e8; --softgreen:#ecf8f2;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}
 .wrap{max-width:1500px;margin:0 auto;padding:24px}
 header{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:20px}
-h1{font-size:28px;margin:0 0 6px} .subtitle{color:var(--muted);font-size:14px}
+h1{font-size:28px;margin:0 0 6px}.subtitle{color:var(--muted);font-size:14px}
 .status{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
 .badge{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px}
 .badge strong{color:var(--accent)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 8px rgba(16,24,40,.04)}
 .card h2{font-size:18px;margin:0;padding:18px 20px;border-bottom:1px solid var(--line)}
 .heatmap{padding:16px;margin-bottom:20px}.heatmap img{width:100%;height:auto;display:block;border-radius:8px}
-.grid{display:grid;grid-template-columns:1fr 1.2fr;gap:20px}
+.grid{display:grid;grid-template-columns:1fr 1.2fr;gap:20px;margin-bottom:20px}
 @media(max-width:1000px){.grid{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}.status{justify-content:flex-start}}
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px}
 .metric{padding:14px;border-radius:10px;background:var(--softblue)}
 .metric .n{font-size:26px;font-weight:700}.metric .k{font-size:12px;color:var(--muted);margin-top:4px}
+.snapshot-note{margin:0 16px 12px;padding:10px 12px;border-radius:8px;background:#f8fafc;color:#667085;font-size:11.5px;line-height:1.45;border:1px solid var(--line)}
 .snapshot-wrap{padding:0 16px 16px;max-height:680px;overflow:auto}
 table{border-collapse:collapse;width:100%;font-size:12px}
 th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
@@ -37,8 +38,18 @@ th{position:sticky;top:0;background:#f8fafc;z-index:1;color:#475467}
 .news p{margin:6px 0;color:#344054;font-size:13px}
 .news .flag{background:var(--softamber);border-left:3px solid #f59e0b;padding:8px 10px;border-radius:4px}
 .news .sector{background:var(--softblue);padding:10px 12px;border-radius:8px;margin:8px 0}
+.reference{margin-bottom:20px}
+.reference-intro{padding:14px 20px;color:#475467;font-size:12px;line-height:1.5}
+.filters{display:grid;grid-template-columns:1fr 1fr 2fr;gap:10px;padding:0 20px 14px}
+@media(max-width:900px){.filters{grid-template-columns:1fr}}
+.filters select,.filters input{width:100%;border:1px solid #d0d5dd;border-radius:8px;padding:9px 10px;font-size:12px;background:#fff;color:#344054}
+.company-table-wrap{padding:0 20px 20px;overflow:auto;max-height:720px}
+.company-table-wrap table{min-width:1150px}
+.company-table-wrap tr.hidden{display:none}
+.company-table-wrap tbody tr:hover{background:#f8fafc}
+.secondary{color:#667085}
+.countline{padding:0 20px 10px;font-size:11px;color:#667085}
 footer{color:var(--muted);font-size:11px;margin:18px 2px 30px}
-.note{padding:12px 16px;background:#fff;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -50,7 +61,7 @@ footer{color:var(--muted);font-size:11px;margin:18px 2px 30px}
   </div>
   <div class="status">
     <div class="badge">Data Through <strong>2026-09-09</strong></div>
-    <div class="badge">Generated <strong>2026-09-09 14:09</strong></div>
+    <div class="badge">Generated <strong>2026-09-09 14:51</strong></div>
     <div class="badge">Status <strong>SUCCESS</strong></div>
   </div>
 </header>
@@ -68,8 +79,12 @@ footer{color:var(--muted);font-size:11px;margin:18px 2px 30px}
       <div class="metric"><div class="n">80</div><div class="k">Eligible Names</div></div>
       <div class="metric"><div class="n">80</div><div class="k">Universe</div></div>
     </div>
+    <div class="snapshot-note">
+      <strong>Note:</strong> Price and Trailing Stop are presented on a USD-converted basis for cross-market comparability.
+      For securities listed outside the U.S., these values may differ from the prices quoted in their local trading currency.
+    </div>
     <div class="snapshot-wrap">
-      <table><thead><tr><th>Asset</th><th>Status</th><th>Price</th><th>Trailing Stop</th><th>Distance</th></tr></thead><tbody>
+      <table><thead><tr><th>Asset</th><th>Status</th><th>Price (USD)</th><th>Trailing Stop (USD)</th><th>Distance</th></tr></thead><tbody>
 <tr><td>000660 KS Equity</td><td class='trend-long'>Long</td><td>1400.90954</td><td>1093.30253630032</td><td>28.1%</td></tr>
 <tr><td>005930 KS Equity</td><td class='trend-long'>Long</td><td>204.98383</td><td>169.583500723429</td><td>20.9%</td></tr>
 <tr><td>2308 TT Equity</td><td class='trend-long'>Long</td><td>57.98253</td><td>52.4282641803411</td><td>10.6%</td></tr>
@@ -153,7 +168,6 @@ footer{color:var(--muted);font-size:11px;margin:18px 2px 30px}
 </tbody></table>
 
     </div>
-    <div class="note">Snapshot is generated from AI_Trend_LatestSnapshot.txt. Long names are shown first.</div>
   </section>
 
   <section class="card">
@@ -241,10 +255,151 @@ footer{color:var(--muted);font-size:11px;margin:18px 2px 30px}
   </section>
 </div>
 
+<section class="card reference">
+  <h2>Company Reference</h2>
+  <div class="reference-intro">
+    Company classification is sourced from <strong>AI Infra v2.xlsx → 後續分類使用</strong>.
+    Use the filters below to locate a company or browse the AI infrastructure value chain.
+  </div>
+  <div class="filters">
+    <select id="layerFilter"><option value="">All Layers</option><option value='Layer 1｜Demand'>Layer 1｜Demand</option>
+<option value='Layer 2｜Architecture &amp; Components'>Layer 2｜Architecture &amp; Components</option>
+<option value='Layer 3｜Physical Infrastructure'>Layer 3｜Physical Infrastructure</option>
+</select>
+    <select id="subsectorFilter"><option value="">All Subsectors</option><option value='Compute'>Compute</option>
+<option value='Data Center'>Data Center</option>
+<option value='Hyperscaler / Integrated Cloud'>Hyperscaler / Integrated Cloud</option>
+<option value='Memory &amp; Storage'>Memory &amp; Storage</option>
+<option value='NeoCloud / AI Cloud'>NeoCloud / AI Cloud</option>
+<option value='Networking &amp; Optical'>Networking &amp; Optical</option>
+<option value='Power &amp; Cooling'>Power &amp; Cooling</option>
+<option value='Semiconductor Design &amp; Manufacturing'>Semiconductor Design &amp; Manufacturing</option>
+<option value='Server &amp; Rack'>Server &amp; Rack</option>
+</select>
+    <input id="companySearch" type="search" placeholder="Search company, ticker, industry, Chinese name...">
+  </div>
+  <div class="countline"><span id="visibleCompanyCount">80</span> of 80 companies shown</div>
+  <div class="company-table-wrap">
+    <table id='companyReferenceTable'><thead><tr><th>Layer</th><th>Subsector</th><th>Industry</th><th>Bloomberg Ticker</th><th>Company</th><th>中文名稱</th><th>Secondary Exposure</th></tr></thead><tbody>
+<tr data-layer='Layer 1｜Demand' data-subsector='Hyperscaler / Integrated Cloud'><td>Layer 1｜Demand</td><td>Hyperscaler / Integrated Cloud</td><td>AI Cloud / Hyperscaler</td><td>GOOGL US Equity</td><td>Alphabet Inc</td><td>Alphabet公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 1｜Demand' data-subsector='Hyperscaler / Integrated Cloud'><td>Layer 1｜Demand</td><td>Hyperscaler / Integrated Cloud</td><td>AI Cloud / Hyperscaler</td><td>AMZN US Equity</td><td>Amazon.com Inc</td><td>亞馬遜公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 1｜Demand' data-subsector='Hyperscaler / Integrated Cloud'><td>Layer 1｜Demand</td><td>Hyperscaler / Integrated Cloud</td><td>AI Cloud / Hyperscaler</td><td>META US Equity</td><td>Meta Platforms Inc</td><td>Meta平台公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 1｜Demand' data-subsector='Hyperscaler / Integrated Cloud'><td>Layer 1｜Demand</td><td>Hyperscaler / Integrated Cloud</td><td>AI Cloud / Hyperscaler</td><td>MSFT US Equity</td><td>Microsoft Corp</td><td>微軟公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 1｜Demand' data-subsector='Hyperscaler / Integrated Cloud'><td>Layer 1｜Demand</td><td>Hyperscaler / Integrated Cloud</td><td>AI Cloud / Hyperscaler</td><td>ORCL US Equity</td><td>Oracle Corp</td><td>甲骨文公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 1｜Demand' data-subsector='NeoCloud / AI Cloud'><td>Layer 1｜Demand</td><td>NeoCloud / AI Cloud</td><td>GPU / AI Compute Cloud</td><td>CRWV US Equity</td><td>CoreWeave Inc</td><td>CoreWeave公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 1｜Demand' data-subsector='NeoCloud / AI Cloud'><td>Layer 1｜Demand</td><td>NeoCloud / AI Cloud</td><td>GPU / AI Compute Cloud</td><td>NBIS US Equity</td><td>Nebius Group NV</td><td>尼比厄斯集團公眾有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Compute'><td>Layer 2｜Architecture &amp; Components</td><td>Compute</td><td>Alternative Accelerator / Wafer-Scale</td><td>CBRS US Equity</td><td>Cerebras Systems Inc</td><td>Cerebras系統公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Compute'><td>Layer 2｜Architecture &amp; Components</td><td>Compute</td><td>CPU / Host Compute</td><td>INTC US Equity</td><td>Intel Corp</td><td>英特爾</td><td class='secondary'>Semiconductor Design &amp; Manufacturing / Foundry / Advanced Packaging</td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Compute'><td>Layer 2｜Architecture &amp; Components</td><td>Compute</td><td>Custom AI ASIC / Edge AI SoC</td><td>2454 TT Equity</td><td>MediaTek Inc</td><td>聯發科技股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Compute'><td>Layer 2｜Architecture &amp; Components</td><td>Compute</td><td>Edge AI / SoC / NPU</td><td>QCOM US Equity</td><td>QUALCOMM Inc</td><td>高通公司</td><td class='secondary'>Compute / Data Center AI Accelerator / CPU</td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Compute'><td>Layer 2｜Architecture &amp; Components</td><td>Compute</td><td>GPU Accelerator / CPU</td><td>AMD US Equity</td><td>Advanced Micro Devices Inc</td><td>超微半導體公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Compute'><td>Layer 2｜Architecture &amp; Components</td><td>Compute</td><td>GPU Accelerator / Full-stack AI Platform</td><td>NVDA US Equity</td><td>NVIDIA Corp</td><td>輝達公司</td><td class='secondary'>Networking &amp; Optical / Scale-Up Fabric / NIC / Network</td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Memory &amp; Storage'><td>Layer 2｜Architecture &amp; Components</td><td>Memory &amp; Storage</td><td>Enterprise Storage Systems</td><td>NTAP US Equity</td><td>NetApp Inc</td><td>網路應用公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Memory &amp; Storage'><td>Layer 2｜Architecture &amp; Components</td><td>Memory &amp; Storage</td><td>Enterprise Storage Systems</td><td>P US Equity</td><td>Everpure Inc</td><td>愛惠浦公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Memory &amp; Storage'><td>Layer 2｜Architecture &amp; Components</td><td>Memory &amp; Storage</td><td>HBM / DRAM</td><td>MU US Equity</td><td>Micron Technology Inc</td><td>美光科技公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Memory &amp; Storage'><td>Layer 2｜Architecture &amp; Components</td><td>Memory &amp; Storage</td><td>HBM / DRAM</td><td>000660 KS Equity</td><td>SK hynix Inc</td><td>愛思開海力士公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Memory &amp; Storage'><td>Layer 2｜Architecture &amp; Components</td><td>Memory &amp; Storage</td><td>HBM / DRAM</td><td>005930 KS Equity</td><td>Samsung Electronics Co Ltd</td><td>三星電子有限公司</td><td class='secondary'>Semiconductor Design &amp; Manufacturing / Foundry</td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Memory &amp; Storage'><td>Layer 2｜Architecture &amp; Components</td><td>Memory &amp; Storage</td><td>NAND / SSD</td><td>285A JP Equity</td><td>Kioxia Holdings Corp</td><td>鎧俠控股公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Memory &amp; Storage'><td>Layer 2｜Architecture &amp; Components</td><td>Memory &amp; Storage</td><td>NAND / SSD</td><td>SNDK US Equity</td><td>Sandisk Corp</td><td>晟碟公司（德拉瓦州）</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Memory &amp; Storage'><td>Layer 2｜Architecture &amp; Components</td><td>Memory &amp; Storage</td><td>SSD Controller</td><td>8299 TT Equity</td><td>Phison Electronics Corp</td><td>群聯電子股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Memory &amp; Storage'><td>Layer 2｜Architecture &amp; Components</td><td>Memory &amp; Storage</td><td>SSD Controller</td><td>SIMO US Equity</td><td>Silicon Motion Technology Corp</td><td>慧榮科技</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>Connectivity / SerDes / Electro-Optics</td><td>MRVL US Equity</td><td>Marvell Technology Inc</td><td>Marvell Technology Inc</td><td class='secondary'>Compute / Custom Silicon</td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>Fiber / Cabling / Connector Infrastructure</td><td>GLW US Equity</td><td>Corning Inc</td><td>康寧公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>Network Systems / Ethernet</td><td>ANET US Equity</td><td>Arista Networks Inc</td><td>Arista網路公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>Network Systems / Ethernet</td><td>CSCO US Equity</td><td>Cisco Systems Inc</td><td>思科</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>Optical Components / Laser</td><td>COHR US Equity</td><td>Coherent Corp</td><td>連貫公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>Optical Components / Laser</td><td>LITE US Equity</td><td>Lumentum Holdings Inc</td><td>魯門特姆控股公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>Optical Manufacturing</td><td>FN US Equity</td><td>Fabrinet</td><td>Fabrinet</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>Optical Module / Transceiver</td><td>300502 CH Equity</td><td>Eoptolink Technology Inc Ltd</td><td>成都新易盛通信技術股份有限公</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>Optical Module / Transceiver</td><td>300308 CH Equity</td><td>Zhongji Innolight Co Ltd</td><td>中際旭創股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>PCIe / CXL Connectivity</td><td>ALAB US Equity</td><td>Astera Labs Inc</td><td>Astera實驗室公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>PCIe / CXL Connectivity</td><td>MCHP US Equity</td><td>Microchip Technology Inc</td><td>超捷國際股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Networking &amp; Optical'><td>Layer 2｜Architecture &amp; Components</td><td>Networking &amp; Optical</td><td>Switch ASIC / Network Silicon</td><td>AVGO US Equity</td><td>Broadcom Inc</td><td>博通公司</td><td class='secondary'>Compute / Custom AI ASIC / XPU</td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>ASIC Design Services / Turnkey</td><td>3661 TT Equity</td><td>Alchip Technologies Ltd</td><td>世芯電子股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>ASIC Design Services / Turnkey</td><td>3443 TT Equity</td><td>Global Unichip Corp</td><td>創意電子股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>ASIC Design Services / Turnkey</td><td>3035 TT Equity</td><td>Faraday Technology Corp</td><td>智原科技股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>Advanced Packaging Equipment</td><td>522 HK Equity</td><td>ASMPT Ltd</td><td>ASMPT Ltd</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>Advanced Packaging Equipment</td><td>BESI NA Equity</td><td>BE Semiconductor Industries NV</td><td>BE半導體產業公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>CCL / Low-Loss Materials</td><td>2383 TT Equity</td><td>Elite Material Co Ltd</td><td>台光電子材料股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>CCL / Low-Loss Materials</td><td>6213 TT Equity</td><td>ITEQ Corp</td><td>聯茂電子股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>CCL / Low-Loss Materials</td><td>6274 TT Equity</td><td>Taiwan Union Technology Corp</td><td>台燿科技股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>Custom SoC / Design Services</td><td>6526 TT Equity</td><td>Airoha Technology Corp</td><td>達發科技股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>EDA</td><td>CDNS US Equity</td><td>Cadence Design Systems Inc</td><td>Cadence設計系統公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>EDA</td><td>SNPS US Equity</td><td>Synopsys Inc</td><td>新思科技公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>EDA</td><td>SIE GY Equity</td><td>Siemens AG</td><td>西門子</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>Foundry</td><td>2330 TT Equity</td><td>Taiwan Semiconductor Manufacturing Co Ltd</td><td>台灣積體電路製造股份有限公司</td><td class='secondary'>Semiconductor Design &amp; Manufacturing / Advanced Packaging</td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>IC Substrate</td><td>4062 JP Equity</td><td>Ibiden Co Ltd</td><td>揖斐電有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>IC Substrate</td><td>3189 TT Equity</td><td>Kinsus Interconnect Technology Corp</td><td>景碩科技股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>IC Substrate</td><td>6967 TT Equity</td><td>TRANS-SUN MATERIALS TECHNOLOGY CO Ltd</td><td>汎瑋材料科技股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>IC Substrate / PCB</td><td>3037 TT Equity</td><td>Unimicron Technology Corp</td><td>欣興電子股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>IC Substrate / PCB</td><td>ATS AV Equity</td><td>AT&amp;S Austria Technologie &amp; Systemtechnik AG</td><td>奧地利科技及系統技術公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>OSAT / Assembly &amp; Test</td><td>3711 TT Equity</td><td>ASE Technology Holding Co Ltd</td><td>日月光投資控股股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>OSAT / Assembly &amp; Test</td><td>AMKR US Equity</td><td>Amkor Technology Inc</td><td>艾克爾國際科技股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>PCB / High-Speed Board</td><td>2313 TT Equity</td><td>Compeq Manufacturing Co Ltd</td><td>華通電腦股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>Semiconductor Equipment</td><td>ASML US Equity</td><td>ASML Holding NV</td><td>艾司摩爾控股公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>Semiconductor Equipment</td><td>AMAT US Equity</td><td>Applied Materials Inc</td><td>應用材料</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>Semiconductor Equipment</td><td>KLAC US Equity</td><td>KLA Corp</td><td>科磊公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>Semiconductor Equipment</td><td>LRCX US Equity</td><td>Lam Research Corp</td><td>科林研發股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>Semiconductor Equipment</td><td>8035 JP Equity</td><td>Tokyo Electron Ltd</td><td>東京威力科創有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 2｜Architecture &amp; Components' data-subsector='Semiconductor Design &amp; Manufacturing'><td>Layer 2｜Architecture &amp; Components</td><td>Semiconductor Design &amp; Manufacturing</td><td>Semiconductor IP</td><td>ARM US Equity</td><td>ARM Holdings PLC</td><td>安謀控股公開有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Data Center'><td>Layer 3｜Physical Infrastructure</td><td>Data Center</td><td>Retail / Carrier-Neutral Colocation</td><td>DLR US Equity</td><td>Digital Realty Trust Inc</td><td>數位不動產信託公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Data Center'><td>Layer 3｜Physical Infrastructure</td><td>Data Center</td><td>Retail / Carrier-Neutral Colocation</td><td>EQIX US Equity</td><td>Equinix Inc</td><td>Equinix公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Power &amp; Cooling'><td>Layer 3｜Physical Infrastructure</td><td>Power &amp; Cooling</td><td>Electrical / Power Infrastructure</td><td>ABBN SW Equity</td><td>ABB Ltd</td><td>艾波比股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Power &amp; Cooling'><td>Layer 3｜Physical Infrastructure</td><td>Power &amp; Cooling</td><td>Electrical / Power Infrastructure</td><td>ETN US Equity</td><td>Eaton Corp PLC</td><td>伊頓公開有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Power &amp; Cooling'><td>Layer 3｜Physical Infrastructure</td><td>Power &amp; Cooling</td><td>Integrated Power / Thermal Infrastructure</td><td>2308 TT Equity</td><td>Delta Electronics Inc</td><td>台達電子工業股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Power &amp; Cooling'><td>Layer 3｜Physical Infrastructure</td><td>Power &amp; Cooling</td><td>Integrated Power / Thermal Infrastructure</td><td>SU FP Equity</td><td>Schneider Electric SE</td><td>施耐德電機公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Power &amp; Cooling'><td>Layer 3｜Physical Infrastructure</td><td>Power &amp; Cooling</td><td>Integrated Power / Thermal Infrastructure</td><td>VRT US Equity</td><td>Vertiv Holdings Co</td><td>維諦控股公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Power &amp; Cooling'><td>Layer 3｜Physical Infrastructure</td><td>Power &amp; Cooling</td><td>Liquid Cooling / Thermal Components</td><td>3324 TT Equity</td><td>AURAS Technology Co Ltd</td><td>雙鴻科技股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Power &amp; Cooling'><td>Layer 3｜Physical Infrastructure</td><td>Power &amp; Cooling</td><td>Liquid Cooling / Thermal Components</td><td>3017 TT Equity</td><td>Asia Vital Components Co Ltd</td><td>奇鋐科技股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Power &amp; Cooling'><td>Layer 3｜Physical Infrastructure</td><td>Power &amp; Cooling</td><td>Liquid Cooling / Thermal Components</td><td>MOD US Equity</td><td>Modine Manufacturing Co</td><td>摩丁製造公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Power &amp; Cooling'><td>Layer 3｜Physical Infrastructure</td><td>Power &amp; Cooling</td><td>Power Semiconductor</td><td>IFX GY Equity</td><td>Infineon Technologies AG</td><td>英飛凌科技股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Power &amp; Cooling'><td>Layer 3｜Physical Infrastructure</td><td>Power &amp; Cooling</td><td>Power Semiconductor</td><td>MPWR US Equity</td><td>Monolithic Power Systems Inc</td><td>芯源系統有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Server &amp; Rack'><td>Layer 3｜Physical Infrastructure</td><td>Server &amp; Rack</td><td>Server ODM / Rack Integration</td><td>2382 TT Equity</td><td>Quanta Computer Inc</td><td>廣達電腦股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Server &amp; Rack'><td>Layer 3｜Physical Infrastructure</td><td>Server &amp; Rack</td><td>Server ODM / Rack Integration</td><td>6669 TT Equity</td><td>Wiwynn Corp</td><td>緯穎科技服務股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Server &amp; Rack'><td>Layer 3｜Physical Infrastructure</td><td>Server &amp; Rack</td><td>Server ODM / Rack Integration</td><td>2356 TT Equity</td><td>Inventec Corp</td><td>英業達股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Server &amp; Rack'><td>Layer 3｜Physical Infrastructure</td><td>Server &amp; Rack</td><td>Server ODM / Rack Integration</td><td>3231 TT Equity</td><td>Wistron Corp</td><td>緯創資通股份有限公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Server &amp; Rack'><td>Layer 3｜Physical Infrastructure</td><td>Server &amp; Rack</td><td>Server OEM</td><td>DELL US Equity</td><td>Dell Technologies Inc</td><td>戴爾科技公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Server &amp; Rack'><td>Layer 3｜Physical Infrastructure</td><td>Server &amp; Rack</td><td>Server OEM</td><td>HPE US Equity</td><td>Hewlett Packard Enterprise Co</td><td>慧與企業公司</td><td class='secondary'></td></tr>
+<tr data-layer='Layer 3｜Physical Infrastructure' data-subsector='Server &amp; Rack'><td>Layer 3｜Physical Infrastructure</td><td>Server &amp; Rack</td><td>Server OEM</td><td>SMCI US Equity</td><td>Super Micro Computer Inc</td><td>美超微電腦公司</td><td class='secondary'></td></tr>
+</tbody></table>
+
+  </div>
+</section>
+
 <footer>
-  Internal research monitor. Market signals are model outputs; news text is reproduced from the supplied daily-news file for internal review.
+  Internal research monitor. Market signals are model outputs; news text is based on the supplied daily-news file.
 </footer>
 </div>
+
+<script>
+(function(){
+  const layer = document.getElementById('layerFilter');
+  const subsector = document.getElementById('subsectorFilter');
+  const search = document.getElementById('companySearch');
+  const rows = Array.from(document.querySelectorAll('#companyReferenceTable tbody tr'));
+  const count = document.getElementById('visibleCompanyCount');
+
+  function applyFilters(){
+    const l = layer.value.toLowerCase();
+    const s = subsector.value.toLowerCase();
+    const q = search.value.trim().toLowerCase();
+    let visible = 0;
+    rows.forEach(row => {
+      const okLayer = !l || (row.dataset.layer || '').toLowerCase() === l;
+      const okSub = !s || (row.dataset.subsector || '').toLowerCase() === s;
+      const okSearch = !q || row.innerText.toLowerCase().includes(q);
+      const show = okLayer && okSub && okSearch;
+      row.classList.toggle('hidden', !show);
+      if(show) visible++;
+    });
+    count.textContent = visible;
+  }
+
+  layer.addEventListener('change', applyFilters);
+  subsector.addEventListener('change', applyFilters);
+  search.addEventListener('input', applyFilters);
+})();
+</script>
 </body>
 </html>
 
